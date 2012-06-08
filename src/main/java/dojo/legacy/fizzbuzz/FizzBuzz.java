@@ -4,33 +4,33 @@ public class FizzBuzz {
 	 public String[] play(int start, int stop) {
 		 if (start > 0 && start <= stop) {
 		     int length = stop - start + 1;
-		     String[] array = new String[length];
+		     String[] result = new String[length];
 		     for (int i = 0; i < length; i++) {
-		        int seriesValue = start + i;
-		        array[i] = "";
-				if (divideByTester(seriesValue,3)) {
-					array[i]+="Fizz";
+		        int currentNumber = start + i;
+		        result[i] = "";
+				if (isDivisibleBy(currentNumber,3)) {
+					result[i]+="Fizz";
 		        }
-				if (divideByTester(seriesValue,5)) {
-					array[i]+="Buzz";
+				if (isDivisibleBy(currentNumber,5)) {
+					result[i]+="Buzz";
 		        } 
-				if (divideByTester(seriesValue,7)){
-					array[i]+="Flipp";
+				if (isDivisibleBy(currentNumber,7)){
+					result[i]+="Flipp";
 				}
-		        if (divideByTester(seriesValue,11)){
-		                 array[i]+="Flopp";
+		        if (isDivisibleBy(currentNumber,11)){
+		                 result[i]+="Flopp";
 		        }
-		        if(array[i].length() == 0){
-		        	array[i] += "" + seriesValue; 
+		        if(result[i].isEmpty()){
+		        	result[i] += "" + currentNumber; 
 		        }
 		     }
-		     return array;
+		     return result;
 		 } else {
 		     throw new IllegalArgumentException();
 		 }
 	 }
 	 
-	 private boolean divideByTester(int dividend, int divisor){
+	 private boolean isDivisibleBy(int dividend, int divisor){
 		return (dividend % divisor == 0)?true:false;
 	 }
 }
