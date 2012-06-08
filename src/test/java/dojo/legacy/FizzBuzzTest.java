@@ -1,61 +1,34 @@
 package dojo.legacy;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class FizzBuzzTest {
 
-	@Test
-	public void testCaseZero(){
-		try{
-			new FizzBuzz().play(0, 0);
-			fail();
-		}
-		catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	private FizzBuzz fizzBuzz = new FizzBuzz();
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCaseShouldFailWhenArgumentsBothZero(){
+			fizzBuzz.play(0, 0);
 	}
 	
-	@Test
-	public void testCaseNegativeStart(){
-		try{
-			new FizzBuzz().play(-2, 42);
-			fail();
-		}
-		catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	@Test(expected = IllegalArgumentException.class)
+	public void testCaseShouldFailWhenStartIsNegative(){
+			fizzBuzz.play(-2, 42);
 	}
 	
-	@Test
-	public void testCaseNegativeStop(){
-		try{
-			new FizzBuzz().play(65, -6);
-		}
-		catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	@Test(expected = IllegalArgumentException.class)
+	public void testCaseShouldFailWhenStopIsNegative(){
+			fizzBuzz.play(65, -6);
 	}
 	
-	@Test
-	public void testCaseNegative(){
-		try{
-			new FizzBuzz().play(-2, -8);
-		}
-		catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	@Test(expected = IllegalArgumentException.class)
+	public void testCaseShouldFailWhenArgumentsAreNegative(){
+			fizzBuzz.play(-2, -8);
 	}
 	
-	@Test
-	public void testCasePositive(){
-		try{
-			new FizzBuzz().play(45, 21);
-		}
-		catch(IllegalArgumentException e){
-			assertTrue(true);
-		}
+	@Test(expected = IllegalArgumentException.class)
+	public void testCaseShouldFailWhenStartHigherThanStop(){
+			fizzBuzz.play(45, 21);
 	}
 	
 	@Test
