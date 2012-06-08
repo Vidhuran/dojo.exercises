@@ -1,6 +1,10 @@
 package dojo.legacy;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
+
+import dojo.legacy.fizzbuzz.FizzBuzz;
 
 public class FizzBuzzTest {
 
@@ -33,17 +37,31 @@ public class FizzBuzzTest {
 	
 	@Test
 	public void testCaseProper(){
-		String result[] = new FizzBuzz().play(21, 45);
-		for(int i=0;i<result.length;i++){
-			System.out.print(result[i] + " ");
-		}
+		String result[] = new String[]{"1","2","Fizz","4","Buzz","Fizz","Flipp","8","Fizz","Buzz","Flopp"};
+		assertArrayEquals(fizzBuzz.play(1,11),result);
 	}
 	
 	@Test
-	public void testCase2(){
-		String result[] = new FizzBuzz().play(21, 21);
-		for(int i=0;i<result.length;i++){
-			System.out.print(result[i] + " ");
-		}
+	public void testCaseLargeValues(){
+		String result[] = new String[]{"FizzFlipp","Flopp","23","Fizz","Buzz","26","Fizz","Flipp","29","FizzBuzz","31","32","FizzFlopp","34","BuzzFlipp"};
+		assertArrayEquals(fizzBuzz.play(21,35),result);
+	}
+	
+	@Test
+	public void testCaseDivisiblityFor55(){
+		String result[] = new String[]{"BuzzFlopp","Flipp"};
+		assertArrayEquals(fizzBuzz.play(55,56),result);
+	}
+	
+	@Test
+	public void testCaseDivisiblityFor77(){
+		String result[] = new String[]{"FlippFlopp","Fizz"};
+		assertArrayEquals(fizzBuzz.play(77,78),result);
+	}
+	
+	@Test
+	public void testCaseDivisiblityFor1155(){
+		String result[] = new String[]{"FizzBuzzFlippFlopp"};
+		assertArrayEquals(fizzBuzz.play(1155,1155),result);
 	}
 }
