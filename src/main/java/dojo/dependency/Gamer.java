@@ -13,12 +13,12 @@ public class Gamer {
 
 	private BufferedReader br;
 	private FizzBuzz fizzBuzz;
-	private PrintStream out;
+	private PrintStream ps;
 
-    public Gamer(BufferedReader br, FizzBuzz fizzBuzz, PrintStream out){
+    public Gamer(BufferedReader br, FizzBuzz fizzBuzz, PrintStream ps){
     	this.br = br;
     	this.fizzBuzz = fizzBuzz;
-    	this.out = out;
+    	this.ps = ps;
     }
     
     public void play() {
@@ -28,12 +28,12 @@ public class Gamer {
             int start = Integer.parseInt(input.substring(0, pos));
             int stop = Integer.parseInt(input.substring(pos + 1));
             for (String element : fizzBuzz.play(start, stop)) {
-                    out.printf("%s", element);
+                    ps.printf("%s", element);
             }
     }
 
     public String read() {
-            out.println("fizz buzz: ");
+            ps.println("fizz buzz: ");
             // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
                     return br.readLine();
