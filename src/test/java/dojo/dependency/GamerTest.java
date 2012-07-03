@@ -6,9 +6,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -43,7 +40,6 @@ public class GamerTest {
 		String input;
 		public FakeBufferedReader() {
 			super(new InputStreamReader(System.in));
-			// TODO Auto-generated constructor stub
 		}
 		
 		public String readLine(){
@@ -55,13 +51,12 @@ public class GamerTest {
 
 		public FakePrintStream() {
 			super(System.out,true);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public PrintStream printf(String format, Object... objects){
-			for (int i = 0; i < objects.length ; i++){
-				sb.append(objects[i]);
+			for (Object object : objects){
+				sb.append(object);
 				sb.append(",");
 			}
 			result = sb.toString();
@@ -71,8 +66,6 @@ public class GamerTest {
 		@Override
 		public void println(String s){
 			// super.println(s);
-		}
-		
-		
+		}		
 	}
 }
