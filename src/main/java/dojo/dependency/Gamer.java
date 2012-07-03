@@ -28,7 +28,7 @@ public class Gamer {
             int start = Integer.parseInt(input.substring(0, pos));
             int stop = Integer.parseInt(input.substring(pos + 1));
             for (String element : fizzBuzz.play(start, stop)) {
-                    ps.printf("%s", element);
+                    ps.printf("%s,", element);
             }
     }
 

@@ -14,49 +14,57 @@ import org.junit.Test;
 
 public class GamerTest {
 
-	List<String> checkingString = new ArrayList<String>() {{
+	/*
+	List<String> expected = new ArrayList<String>() {{
 		add("1");
 		add("2");
 		add("Fizz");
 		add("4");
 		add("Buzz");
 	}};
-		
-	List<String> result = new ArrayList<String>();
+	*/
 	
-	private Gamer gamer = new Gamer(new FakeBufferedReader(new InputStreamReader(System.in)),new FizzBuzz(),new FakePrintStream(System.out));
+	StringBuilder sb = new StringBuilder();
+	String result = new String();
 	
 	@Test
 	public void testCasePlay() throws FileNotFoundException{
+		FakeBufferedReader br = new FakeBufferedReader();
+		br.input = "1,5";
+		FizzBuzz fizzBuzz = new FizzBuzz();
+		FakePrintStream ps = new FakePrintStream();
+		Gamer gamer = new Gamer(br,fizzBuzz,ps);
 		gamer.play();
-		assertEquals(result,checkingString);
+		assertEquals("1,2,Fizz,4,Buzz,",result);
 		
 	}
 	
 	class FakeBufferedReader extends BufferedReader {
-
-		public FakeBufferedReader(Reader in) {
-			super(in);
+		String input;
+		public FakeBufferedReader() {
+			super(new InputStreamReader(System.in));
 			// TODO Auto-generated constructor stub
 		}
 		
 		public String readLine(){
-			return "1,5";
+			return input;
 		}
 	}
 	
 	class FakePrintStream extends PrintStream {
 
-		public FakePrintStream(PrintStream ps) {
-			super(ps,true);
+		public FakePrintStream() {
+			super(System.out,true);
 			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public PrintStream printf(String format, Object... objects){
 			for (int i = 0; i < objects.length ; i++){
-				result.add(objects[i].toString());
+				sb.append(objects[i]);
+				sb.append(",");
 			}
+			result = sb.toString();
 			return null;
 		}
 		
@@ -68,4 +76,3 @@ public class GamerTest {
 		
 	}
 }
-
