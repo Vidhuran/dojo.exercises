@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class GamerTest {
@@ -21,22 +22,31 @@ public class GamerTest {
 	}};
 	*/
 	
-	StringBuilder sb = new StringBuilder();
-	String result = new String();
+	private FakeBufferedReader br;
+	private Gamer gamer;
+	private FakePrintStream ps;
+	private String nl = System.getProperty("line.separator");
+	
+	@Before
+	public void setup(){
+		br = new FakeBufferedReader();
+		FizzBuzz fizzBuzz = new FizzBuzz();
+		ps = new FakePrintStream();
+		gamer = new Gamer(br,fizzBuzz,ps);
+	}
 	
 	@Test
 	public void testCasePlay() throws FileNotFoundException{
-		FakeBufferedReader br = new FakeBufferedReader();
+		
 		br.input = "1,5";
-		FizzBuzz fizzBuzz = new FizzBuzz();
-		FakePrintStream ps = new FakePrintStream();
-		Gamer gamer = new Gamer(br,fizzBuzz,ps);
+			
 		gamer.play();
-		assertEquals("1,2,Fizz,4,Buzz,",result);
+		assertEquals("fizz buzz: " +nl+ "1 2 Fizz 4 Buzz ",ps.result);
 		
 	}
 	
 	class FakeBufferedReader extends BufferedReader {
+		
 		String input;
 		public FakeBufferedReader() {
 			super(new InputStreamReader(System.in));
@@ -49,6 +59,9 @@ public class GamerTest {
 	
 	class FakePrintStream extends PrintStream {
 
+		private StringBuilder sb = new StringBuilder();
+		String result = new String();
+		
 		public FakePrintStream() {
 			super(System.out,true);
 		}
@@ -57,7 +70,7 @@ public class GamerTest {
 		public PrintStream printf(String format, Object... objects){
 			for (Object object : objects){
 				sb.append(object);
-				sb.append(",");
+				sb.append(" ");
 			}
 			result = sb.toString();
 			return null;
@@ -65,7 +78,7 @@ public class GamerTest {
 		
 		@Override
 		public void println(String s){
-			// super.println(s);
+			sb.append(s + nl);
 		}		
 	}
 }
